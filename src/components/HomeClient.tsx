@@ -4,6 +4,9 @@ import React from "react";
 import { motion } from "motion/react";
 
 function HomeClient() {
+  const handleLogin=()=>{
+    window.location.href="/api/auth/login"
+  }
   return (
     <div className="min-h-screen bg-linear-to-br from-white to-zinc-50 text-zinc-900 overflow-x-hidden">
       <motion.div
@@ -22,6 +25,7 @@ function HomeClient() {
                 hover:bg-zinc-800 transition
                 disabled:opacity-60
                 flex items-center gap-2"
+                onClick={handleLogin}
           >
             Login
           </button>
