@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import axios from "axios";
 
 function HomeClient({ email }: { email: string }) {
   const handleLogin = () => {
@@ -33,6 +34,15 @@ function HomeClient({ email }: { email: string }) {
       desc: "Your customers get instant support 24/7.",
     },
   ];
+
+  const handleLogOut = async () => {
+    try {
+      const result = await axios.get("/api/auth/logout");
+      window.location.href = "/";
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-linear-to-br from-white to-zinc-50 text-zinc-900 overflow-x-hidden">
@@ -72,7 +82,10 @@ function HomeClient({ email }: { email: string }) {
                     <button className="w-full text-left px-4 py-3 text-sm hover:bg-zinc-100">
                       Dashboard
                     </button>
-                    <button className="block px-4 py-3 text-sm text-red-600 hover:bg-zinc-100">
+                    <button
+                      className="block px-4 py-3 text-sm text-red-600 hover:bg-zinc-100"
+                      onClick={handleLogOut}
+                    >
                       Logout
                     </button>
                   </motion.div>
@@ -105,7 +118,7 @@ function HomeClient({ email }: { email: string }) {
               AI customer support <br /> Built for modern websites{" "}
             </h1>
             <p className="mt-6 text-lg text-zinc-600 max-w-xl">
-              Add a powerful AI chatbot to your website in seconds. Let your
+              Add a powerful AI chatbot into your website in minutes. Let your
               customers get instant answers using your own business knowledge
             </p>
             <div className="mt-10 flex gap-4">
@@ -214,7 +227,6 @@ function HomeClient({ email }: { email: string }) {
       <footer className="py-10 text-center text-sm text-zinc-500">
         &copy; {new Date().getFullYear()} Helpdock. All rights reserved.
       </footer>
-
     </div>
   );
 }
