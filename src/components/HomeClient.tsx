@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 function HomeClient({ email }: { email: string }) {
   const handleLogin = () => {
@@ -19,6 +20,8 @@ function HomeClient({ email }: { email: string }) {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
+
+  const navigate = useRouter()
 
   const features = [
     {
@@ -79,7 +82,10 @@ function HomeClient({ email }: { email: string }) {
                       shadow-xl border border-zinc-200
                       overflow-hidden"
                   >
-                    <button className="w-full text-left px-4 py-3 text-sm hover:bg-zinc-100">
+                    <button
+                      className="w-full text-left px-4 py-3 text-sm hover:bg-zinc-100"
+                      onClick={() => navigate.push("/dashboard")}
+                    >
                       Dashboard
                     </button>
                     <button
@@ -128,6 +134,7 @@ function HomeClient({ email }: { email: string }) {
                     bg-black text-white font-medium
                     hover:bg-zinc-800 transition
                     disabled:opacity-60"
+                  onClick={() => navigate.push("/dashboard")}
                 >
                   Go to Dashboard
                 </button>
