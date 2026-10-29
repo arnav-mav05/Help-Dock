@@ -1,11 +1,15 @@
-import React from 'react'
+import DashboardClient from "@/components/DashboardClient";
+import { getSession } from "@/lib/getSession";
+import React from "react";
 
-function page() {
+async function page() {
+  const session = await getSession();
+
   return (
-    <div>
-      
-    </div>
-  )
+    <>
+      <DashboardClient ownerId={session?.user?.id!} />
+    </>
+  );
 }
 
-export default page
+export default page;

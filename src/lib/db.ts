@@ -1,4 +1,7 @@
 import { connect } from "mongoose";
+import { setServers } from "node:dns/promises";
+
+setServers(["1.1.1.1", "8.8.8.8"]);
 
 const mongo_Url = process.env.MONGODB_URL;
 if (!mongo_Url) {
